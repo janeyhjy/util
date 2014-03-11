@@ -28,6 +28,7 @@ util.dateFormat = function(time, format) {
         "h+": _date.getHours(), //hour
         "m+": _date.getMinutes(), //minutes
         "s+": _date.getSeconds(), //seconds
+        "q+": (_date.getMonth() + 1) / 3, //quarter
         "S": _date.getMilliseconds() //millisecond
     }
     if(!format) {
@@ -50,15 +51,64 @@ util.replace = function(originalStr, originaText, replaceText) {
         return originalStr.replace(new RegExp(originaText, "gi"), replaceText);
     }
 };
-util.mobileScreenAdaption = (function() {
-    var viewport = document.getElementByName("viewport");
-    var settings = {
+util.device = (function() {
+    var _iphoneRegex = /iPhone/i;
+    var _winphoneRegex = /Windows/i;
+    var _androidRegex = /Android/i;
+    var _isIOS = function(_userAgent) {
+        if(_iphoneRegex.test(_userAgent)) {
+            return true;
+        }
+        return false;
+    }
+    var _isAndroid = function(_userAgent) {
+        if(_androidRegex.test(_userAgent)) {
+            return true;
+        }
+        return false;
+    }
+    var _isWinPhone = function(_userAgent) {
+        if(_winphoneRegex.test(_userAgent)) {
+            return true;
+        }
+        return false;
+    }
+    return {
+        isIOS: _isIOS,
+        isAndroid: _isAndroid,
+        isWinPhone: _isWinPhone
+    }
+})();
+/*
+  <meta name="viewport" content="
+    height=[pixed_value|device-height],
+    width=[pixed_value|device-width],
+    initial-scale=float_value,
+    minimum-scale=float_value,
+    maxmum-scale=float_value,
+    user-scalable=[yes|no],
+    target-densitydpi=[dpi_value|device-dpi|high-dpi|medium-dpi|low-dpi]" />
+*/
+util.mobileScreenAdaption = function(content) {
+    var _viewport = document.getElementByName("viewport")[0];
+    if(!_viewport) {
+        _viewport = document.createElement("meta");
+        _viewport.name = "viewport";
+        document.head.appendChild(_viewport);
+    }
+    var _defaults = {
         width: "100%",
         height: "100%",
     };
-    return {
-        init: function() {
-
-        }
+    var _content = "";
+    if(typeof content == "string") {
+        _content = content;
+    } else if(typeof content == "object") {
+        
     }
-});
+};
+
+//test
+$(function() {
+
+})
