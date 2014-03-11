@@ -51,6 +51,7 @@ util.replace = function(originalStr, originaText, replaceText) {
         return originalStr.replace(new RegExp(originaText, "gi"), replaceText);
     }
 };
+//判断手机类型
 util.device = (function() {
     var _iphoneRegex = /iPhone/i;
     var _winphoneRegex = /Windows/i;
@@ -89,6 +90,7 @@ util.device = (function() {
     user-scalable=[yes|no],
     target-densitydpi=[dpi_value|device-dpi|high-dpi|medium-dpi|low-dpi]" />
 */
+//手机屏幕自适应（缩放）
 util.mobileScreenAdaption = function(content) {
     var _viewport = document.getElementByName("viewport")[0];
     if(!_viewport) {
