@@ -28,7 +28,7 @@ util.dateFormat = function(time, format) {
         "h+": _date.getHours(), //hour
         "m+": _date.getMinutes(), //minutes
         "s+": _date.getSeconds(), //seconds
-        "q+": (_date.getMonth() + 1) / 3, //quarter
+        "q+": Math.floor((_date.getMonth() + 1) / 3), //quarter
         "S": _date.getMilliseconds() //millisecond
     }
     if(!format) {
