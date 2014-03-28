@@ -167,7 +167,7 @@ util.cookie = {
     },
     getItem: function(key) {
         var str = "";
-        var regex1 = new RegExp("\\;\\s+" + key + "\\=[a-zA-z0-9]*\\;", "gi");
+        var regex1 = new RegExp("\\;?\\s*" + key + "\\=[a-zA-z0-9]*\\;", "gi");
         var regex2 = new RegExp('([\\;\\s\\=]|' + key + ')*', "gi");
         var arr = document.cookie.match(regex1);
         if(!!arr && arr[0]) {
