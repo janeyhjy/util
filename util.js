@@ -163,7 +163,7 @@ util.mobileScreenAdaption = function(content) {
 //操作cookie expires: 过期时间可不写,为防止特殊符号，可用安全的base64进行编码
 util.cookie = {
     setItem: function(key, value) {
-        document.cookie = key + "=" + value + ";expires=" + new Date(new Date().getFullYear() + 10 + "-1-1").toGMTString();
+        document.cookie = key + "=" + escape(value) + ";expires=" + new Date(new Date().getFullYear() + 10 + "-1-1").toGMTString();
     },
     getItem: function(key) {
         var str = "";
@@ -173,7 +173,7 @@ util.cookie = {
         if(!!arr && arr[0]) {
             str = arr[0].replace(regex2, "");
         }
-        return str;
+        return unescape(str);
     }
 }
 //test
