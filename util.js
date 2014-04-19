@@ -1,4 +1,5 @@
-var util = util || {}
+//test 
+ var util = util || {}
 //根据 key 取 url中的参数
 util.getParams = function(key) {
     var param = "";
